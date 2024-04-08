@@ -35,5 +35,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # Change to the branch you want to deploy to
           FOLDER: release/wwwroot # Adjust the path to your Blazor output folder
-          CLEAN: true # Clean the target branch before deploying
-          NO_JEKYLL: true # Do not use Jekyll during deployment
+          CLEAN: true # Clean the target branch before deploying          
