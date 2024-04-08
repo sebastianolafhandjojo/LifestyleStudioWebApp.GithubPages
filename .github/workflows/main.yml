@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main # Change to the branch you want to trigger the workflow
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Install Dependencies
+        run: dotnet restore
+
+      - name: Build Blazor WASM
+        run: dotnet build -c Release
+
+      - name: Create .nojekyll file
+        run: touch .nojekyll
+
+      - name: Publish to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # Change to the branch you want to deploy to
+          FOLDER: ./bin/Release/net6.0/publish/wwwroot # Adjust the path to your Blazor output folder
+          CLEAN: true # Clean the target branch before deploying
+          NO_JEKYLL: true # Do not use Jekyll during deployment
