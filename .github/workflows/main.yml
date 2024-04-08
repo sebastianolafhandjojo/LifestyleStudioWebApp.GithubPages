@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Change to the branch you want to trigger the workflow
+      - master # Change to the branch you want to trigger the workflow
 
 jobs:
   build-and-deploy:
@@ -23,10 +23,11 @@ jobs:
         run: dotnet restore
 
       - name: Build Blazor WASM
-        run: dotnet build -c Release -o release --nologo
+        run: dotnet publish LifestyleStudioWebApp.GithubPages.csproj -c Release -o release --nologo
 
-      - name: Create .nojekyll file  
-        run: touch .nojekyll
+         # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
+      - name: Add .nojekyll file
+        run: touch release/wwwroot/.nojekyll
 
       - name: Publish to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
