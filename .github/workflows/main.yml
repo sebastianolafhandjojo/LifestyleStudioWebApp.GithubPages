@@ -34,6 +34,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # Change to the branch you want to deploy to
-          FOLDER: bin/Release/net8.0/wwwroot # Adjust the path to your Blazor output folder
+          FOLDER: ./bin/Release/net8.0/wwwroot # Adjust the path to your Blazor output folder
           CLEAN: true # Clean the target branch before deploying        
           
