@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - master # Change to the branch you want to trigger the workflow
-
+permissions:
+    contents: write
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
