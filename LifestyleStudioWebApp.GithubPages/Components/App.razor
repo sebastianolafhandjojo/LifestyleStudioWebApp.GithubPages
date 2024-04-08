@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/" />
+    <base href="/LifestyleStudioWebApp.GithubPages/" />
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="LifestyleStudioWebApp.GithubPages.styles.css" />
@@ -15,6 +15,25 @@
 <body>
     <Routes />
     <script src="_framework/blazor.web.js"></script>
+
+    <script>
+        (function (l) {
+            if (l.search) {
+                var q = {};
+                l.search.slice(1).split('&').forEach(function (v) {
+                    var a = v.split('=');
+                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+                });
+                if (q.p !== undefined) {
+                    window.history.replaceState(null, null, l.pathname.slilce(0, -1) + (q.p || '') + (q.q ? ('?' + q.q) : '') + l.hash
+                    );
+                }
+
+            }
+        }(window.location))
+    </script>
+
+
 </body>
 
 </html>
