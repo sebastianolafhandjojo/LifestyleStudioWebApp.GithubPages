@@ -26,8 +26,8 @@ jobs:
         run: dotnet build -c Release --nologo
 
          # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-      - name: Add .nojekyll file
-        run: touch bin/Release/net8.0/wwwroot/.nojekyll
+      # - name: Add .nojekyll file
+      #   run: touch bin/Release/net8.0/wwwroot/.nojekyll
 
       - name: Publish to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
