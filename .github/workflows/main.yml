@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Blazor WASM
-        run: dotnet build -c Release -o Release --nologo
+        run: dotnet build -c Release -o release --nologo
 
       - name: Create .nojekyll file  
         run: touch .nojekyll
