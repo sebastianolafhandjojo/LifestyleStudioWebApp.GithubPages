@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Blazor WASM
-        run: dotnet build -c Release -o release --nologo
+        run: dotnet build -c Release --nologo
 
          # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
@@ -34,5 +34,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # Change to the branch you want to deploy to
-          FOLDER: release/wwwroot # Adjust the path to your Blazor output folder
-          CLEAN: true # Clean the target branch before deploying          
+          FOLDER: ./bin/Release/net8.0/wwwroot # Adjust the path to your Blazor output folder
+          CLEAN: true # Clean the target branch before deploying        
+          
