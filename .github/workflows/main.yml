@@ -24,7 +24,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Blazor WASM
-        run: dotnet build -c Release --o release --nologo
+        run: dotnet build -c Release -o release --nologo
       
       - name: Copy index.html to 404.html
         run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' release/wwwroot/index.html
