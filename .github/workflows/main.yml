@@ -33,10 +33,10 @@ jobs:
         run: find . -type d -not -type l
 
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
-        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/wwwroot/index.html
 
       - name: Copy index.html to 404.html
-        run: cp ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/404.html
+        run: cp ./LifestyleStudioWebApp.GithubPages/wwwroot/index.html ./LifestyleStudioWebApp.GithubPages/wwwroot/404.html
 
     # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. 
     # (Allow files and folders starting with an underscore)
@@ -48,6 +48,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # Change to the branch you want to deploy to
-          FOLDER: ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot # Adjust the path to your Blazor output folder
+          FOLDER: ./LifestyleStudioWebApp.GithubPages/wwwroot # Adjust the path to your Blazor output folder
           CLEAN: true # Clean the target branch before deploying        
           
