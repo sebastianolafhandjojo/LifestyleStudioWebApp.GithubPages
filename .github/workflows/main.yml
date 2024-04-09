@@ -29,8 +29,11 @@ jobs:
       - name: Build Blazor WASM
         run: dotnet build -c Release --nologo
       
-      - name: List all files in WWWROOT
+      - name: List all subfolder
         run: find . -type d -not -type l -not -path './.git*'
+      
+      - name: List all files
+        run: find . -type f
 
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
         run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/wwwroot/index.html
