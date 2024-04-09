@@ -33,7 +33,7 @@ jobs:
         run: find . -type d -not -type l -not -path './.git*'
       
       - name: List all files
-        run: find . -type f
+        run: find . -type f -not -path './.git*'
 
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
         run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/wwwroot/index.html
