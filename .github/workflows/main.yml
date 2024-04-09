@@ -24,17 +24,24 @@ jobs:
         run: dotnet restore
 
       - name: Build Blazor WASM
-        run: dotnet build -c Release --nologo
+        run: dotnet build -c Release --o release --nologo
+      
+      - name: Copy index.html to 404.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' release/wwwroot/index.html
 
-         # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-      # - name: Add .nojekyll file
-      #   run: touch bin/Release/net8.0/wwwroot/.nojekyll
+      - name: Copy index.html to 404.html
+        run: cp release/wwwroot/index.html relase/wwwroot/404.html
+
+    # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. 
+    # (Allow files and folders starting with an underscore)
+      - name: Add .nojekyll file
+        run: touch release/wwwroot/.nojekyll
 
       - name: Publish to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # Change to the branch you want to deploy to
-          FOLDER: ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot # Adjust the path to your Blazor output folder
+          FOLDER: release/wwwroot # Adjust the path to your Blazor output folder
           CLEAN: true # Clean the target branch before deploying        
           
