@@ -29,6 +29,12 @@ jobs:
       - name: Build Blazor WASM
         run: dotnet build -c Release --nologo
       
+      - name: Delete bin Folder
+        run: rm -rf ./LifestyleStudioWebApp.GithubPages/bin
+
+      - name: Delete obj Folder
+        run: rm -rf ./LifestyleStudioWebApp.GithubPages/obj
+
       - name: List all subfolder
         run: find . -type d -not -type l -not -path './.git*'
       
