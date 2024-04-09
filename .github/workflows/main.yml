@@ -26,8 +26,8 @@ jobs:
       - name: Build Blazor WASM
         run: dotnet build -c Release --nologo
       
-      - name: Copy index.html to 404.html
-        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html
+      - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
+        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html
 
       - name: Copy index.html to 404.html
         run: cp ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/404.html
