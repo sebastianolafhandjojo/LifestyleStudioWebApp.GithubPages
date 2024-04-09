@@ -26,8 +26,11 @@ jobs:
       - name: Install Dependencies
         run: dotnet restore
 
+      - name: create blank release123 folder
+        run: mkdir release123
+
       - name: Build Blazor WASM
-        run: dotnet publish -c Release --nologo
+        run: dotnet publish -c Release -o release123 --nologo
       
       # - name: Delete bin Folder
       #   run: rm -rf ./LifestyleStudioWebApp.GithubPages/bin
@@ -42,10 +45,10 @@ jobs:
         run: find . -type f -not -path './.git*'
 
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
-        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/wwwroot/index.html
 
       - name: Copy index.html to 404.html
-        run: cp ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/404.html
+        run: cp ./LifestyleStudioWebApp.GithubPages/wwwroot/index.html ./LifestyleStudioWebApp.GithubPages/wwwroot/404.html
 
     # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. 
     # (Allow files and folders starting with an underscore)
