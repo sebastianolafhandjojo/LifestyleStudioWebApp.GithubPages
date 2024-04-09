@@ -30,7 +30,7 @@ jobs:
         run: dotnet build -c Release --nologo
       
       - name: List all files in WWWROOT
-        run: ls 
+        run: find . -type d -not -type l
 
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
         run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html
