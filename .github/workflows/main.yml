@@ -21,7 +21,7 @@ jobs:
         run: dotnet --info
 
       - name: Print Current Directory
-        run: printf ".\n"
+        run: printf ./
         
       - name: Install Dependencies
         run: dotnet restore
