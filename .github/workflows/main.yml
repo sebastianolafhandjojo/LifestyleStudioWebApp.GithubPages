@@ -20,12 +20,15 @@ jobs:
       - name: Check Dotnet version
         run: dotnet --info
 
+      - name: Print Current Directory
+        run: printf ".\n"
+        
       - name: Install Dependencies
         run: dotnet restore
 
       - name: Build Blazor WASM
         run: dotnet build -c Release --nologo
-      
+            
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
         run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./LifestyleStudioWebApp.GithubPages/bin/Release/net8.0/wwwroot/index.html
 
