@@ -52,9 +52,12 @@ jobs:
       - name: Add .nojekyll file
         run: touch ./LifestyleStudioWebApp.GithubPages/wwwroot/.nojekyll
 
-      - name: add attribute file file
+      - name: add attribute file
         run: touch ./LifestyleStudioWebApp.GithubPages/wwwroot/.gitattributes
-
+        
+      - name: add binary into attribute file
+        run: echo -e "* binary" > ./LifestyleStudioWebApp.GithubPages/wwwroot/.gitattributes
+        
       - name: Publish to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
