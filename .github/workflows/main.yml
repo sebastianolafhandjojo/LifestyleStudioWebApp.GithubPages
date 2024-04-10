@@ -7,6 +7,7 @@ permissions:
     contents: write
 env:
   publish_folder: publish
+  solution_name: LifestyleStudioWebApp.GithubPages
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -38,23 +39,22 @@ jobs:
         run: dotnet publish -c Release -o "$publish_folder" --nologo
       
       - name: Delete bin Folder
-        run: rm -rf ./LifestyleStudioWebApp.GithubPages/bin
+        run: rm -rf "./$solution_name/bin"
 
       - name: Delete obj Folder
-        run: rm -rf ./LifestyleStudioWebApp.GithubPages/obj
+        run: rm -rf "./$solution_name/obj"
 
       - name: Delete project Folder
-        run: rm -rf ./LifestyleStudioWebApp.GithubPages
-
-
+        run: rm -rf ./$solution_name
+        
       - name: List all subfolder
         run: find . -type d -not -type l -not -path './.git*'
       
       - name: List all files
         run: find . -type f -not -path './.git*'
 
-      - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
-        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' "./$publish_folder/wwwroot/index.html"
+      - name: change the base tag in index.html from '/' to match Github pages repository subdirectory
+        run: sed -i 's/<base href="\/" \/>/<base href="\/$solution_name\/" \/>/g' "./$publish_folder/wwwroot/index.html"
 
       - name: Copy index.html to 404.html
         run: cp ./$publish_folder/wwwroot/index.html "./$publish_folder/wwwroot/404.html"
