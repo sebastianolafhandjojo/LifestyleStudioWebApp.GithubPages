@@ -25,18 +25,28 @@ jobs:
         
       - name: Install Dependencies
         run: dotnet restore
-
-      - name: create blank release123 folder
-        run: mkdir release123
-
+      
+      - name: set variable 
+        run: publish_folder="publish"
+      
+      - name: create blank $publish_folder folder
+        run: mkdir $publish_folder
+      
+      - name: Export the variable to make it available to child processes
+        run: export publish_folder
+      
       - name: Build Blazor WASM
-        run: dotnet publish -c Release -o release123 --nologo
+        run: dotnet publish -c Release -o $publish_folder --nologo
       
       - name: Delete bin Folder
         run: rm -rf ./LifestyleStudioWebApp.GithubPages/bin
 
       - name: Delete obj Folder
         run: rm -rf ./LifestyleStudioWebApp.GithubPages/obj
+
+      - name: Delete project Folder
+        run: rm -rf ./LifestyleStudioWebApp.GithubPages
+
 
       - name: List all subfolder
         run: find . -type d -not -type l -not -path './.git*'
@@ -45,15 +55,15 @@ jobs:
         run: find . -type f -not -path './.git*'
 
       - name: change the base tag in index.html from '/' to 'LifestyleStudioWebApp.GithubPages' to match Github pages repository subdirectory
-        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./release123/wwwroot/index.html
+        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' ./$publish_folder/wwwroot/index.html
 
       - name: Copy index.html to 404.html
-        run: cp ./release123/wwwroot/index.html ./release123/wwwroot/404.html
+        run: cp ./$publish_folder/wwwroot/index.html ./$publish_folder/wwwroot/404.html
 
-    # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. 
-    # (Allow files and folders starting with an underscore)
+      # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. 
+      # (Allow files and folders starting with an underscore)
       - name: Add .nojekyll file
-        run: touch ./release123/wwwroot/.nojekyll
+        run: touch ./$publish_folder/wwwroot/.nojekyll
 
       # - name: add attribute file
       #   run: touch ./LifestyleStudioWebApp.GithubPages/wwwroot/.gitattributes
@@ -66,6 +76,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # Change to the branch you want to deploy to
-          FOLDER: ./release123/wwwroot # Adjust the path to your Blazor output folder
+          FOLDER: ./$publish_folder/wwwroot # Adjust the path to your Blazor output folder
           CLEAN: true # Clean the target branch before deploying        
           
