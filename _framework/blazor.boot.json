@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "LifestyleStudioWebApp.GithubPages",
   "resources": {
-    "hash": "sha256-NCkvN9Ka1ROmoq/pH5DMNWsV2DkzpEdEgrMR+UbtObI=",
+    "hash": "sha256-EkGWkTOz75kaF1FEYWUeQhYL5QJ90e965KQ8MXGpbFk=",
     "jsModuleNative": {
       "dotnet.native.8.0.4.6vlmefabfv.js": "sha256-ju0+XWE0ihz554eKEj0HQ8Opa61xpbUIaX5/MNo8we4="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "LifestyleStudioWebApp.GithubPages.wasm": "sha256-VpVosfFab6Hl2kC6Fg9x+1ku5fYGTXKZbK6n0qtK6Zg=",
+      "LifestyleStudioWebApp.GithubPages.wasm": "sha256-E2HsH0MjtJYauzAa4kFhxhHF5CiSgOcZuNSAy1aHJaw=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-afyz33zoCLLxq241evZ767nYL5c/TrB5RNSkNBD2D+s=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-DUvpzktySFpUWNVEp87C8FbAJYUD6qHu7a6hL+tBSl4=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-kZSJV9ON9UL924dyAnAeoFHZXExv5A/OCxTHlMc+3fQ=",
