@@ -28,12 +28,12 @@ jobs:
       
       - name: set variable 
         run: publish_folder="publish"
+
+      - name: Export the variable to make it available to child processes
+        run: export publish_folder
       
       - name: create blank $publish_folder folder
         run: mkdir $publish_folder
-      
-      - name: Export the variable to make it available to child processes
-        run: export publish_folder
       
       - name: Build Blazor WASM
         run: dotnet publish -c Release -o $publish_folder --nologo
