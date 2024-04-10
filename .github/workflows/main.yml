@@ -5,6 +5,8 @@ on:
       - master # Change to the branch you want to trigger the workflow
 permissions:
     contents: write
+env:
+  publish_folder: publish
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,12 +27,6 @@ jobs:
         
       - name: Install Dependencies
         run: dotnet restore
-      
-      - name: set variable 
-        run: publish_folder="publish"
-
-      - name: Export the variable to make it available to child processes
-        run: export $publish_folder
       
       - name: print the variable
         run: echo "publish folder = $publish_folder"
