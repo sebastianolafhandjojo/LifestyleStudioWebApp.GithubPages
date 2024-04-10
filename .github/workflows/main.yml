@@ -54,7 +54,7 @@ jobs:
         run: find . -type f -not -path './.git*'
 
       - name: change the base tag in index.html from '/' to match Github pages repository subdirectory
-        run: sed -i 's/<base href="\/" \/>/<base href="\/$solution_name\/" \/>/g' "./$publish_folder/wwwroot/index.html"
+        run: sed -i 's/<base href="\/" \/>/<base href="\/LifestyleStudioWebApp.GithubPages\/" \/>/g' "./$publish_folder/wwwroot/index.html"
 
       - name: Copy index.html to 404.html
         run: cp ./$publish_folder/wwwroot/index.html "./$publish_folder/wwwroot/404.html"
